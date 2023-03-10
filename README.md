@@ -2,7 +2,7 @@
 
 This method was used to exploit Pangolin and Heliswap on March 9, 2023: https://docs.google.com/document/d/1vuXi77o_AL9zK_Dnk0oqqgdCc0E6GMRU1SlMCEtvGec
 
-Short of $500M were drained from Pangolin, and only about $2K from Heliswap. However, as seen from the PoC, almost entirety of Hedera DeFi ecosystem (~$30M) was vulnerable.
+Short of $500K were drained from Pangolin, and only about $2K from Heliswap. However, as seen from the PoC, almost entirety of Hedera DeFi ecosystem (~$30M) was vulnerable.
 
 The exploit requires that the vulnerable contract
 
@@ -22,4 +22,4 @@ yarn install
 npx hardhat run scripts/testAttack.js
 ```
 
-This shows that anyone can approve HTS tokens for the VulnerableContract. They can actually directly delegatecall `precompileAddres.transferTokens` to transfer tokens from the VulnerableContract to themselves as well. But this wasn't used in the attack on March 9 due to pair swap function having balances checks after the callback. So the attacker had to first do approval, then transfer out tokens in another transaction without ever calling the pair contract.
+This shows that anyone can approve HTS tokens for the VulnerableContract. They can actually directly delegatecall `precompileAddres.transferTokens` to transfer tokens from the VulnerableContract to themselves as well. But this wasn't used in the attack on March 9 due to pair swap function having balances checks after the callback. So the attacker had to first do approval, then transfer out tokens in another transaction without calling the pair contract a second time.
